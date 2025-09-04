@@ -1,0 +1,259 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #f5f5f5;
+    line-height: 1.6;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1f1f1f;
+    padding: 20px 40px;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid #2e2e2e;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.brand-logo .logo img {
+    width: 128px;
+    height: auto;
+    border-radius: 25%;
+}
+
+.brand-logo i {
+    font-size: 1.6rem;
+    color: #d4af37; 
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #2a2a2a;
+    border-radius: 32px;
+    padding: 6px 16px;
+    flex: 1;
+    max-width: 420px;
+    margin: 12px 20px;
+    border: 1px solid #333;
+}
+
+.search-bar input.search_bar {
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 10px 12px;
+    flex: 1;
+    border-radius: 32px;
+    font-size: 15px;
+    color: #f5f5f5;
+}
+
+.search-bar input::placeholder {
+    color: #999;
+}
+
+.search-bar i {
+    font-size: 20px;
+    color: #888;
+    margin-left: 10px;
+}
+
+
+.btn-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-item {
+    display: flex;
+    gap: 10px;
+}
+
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #2c2c2c;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+
+.btn-permium {
+    background-color: #d4af37;  
+    color: #1f1f1f;              
+}
+
+
+.btn-support {
+    background-color: #2e86de; 
+}
+
+
+.btn-Download {
+    background-color: #28a745; 
+}
+
+
+.btn-sign-up {
+    background-color: #444; 
+}
+
+
+.btn-login {
+    background-color: #333; 
+}
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffffff22;
+}
+
+.heading p{
+    display: flex;
+    font-size: 6vh;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+}
+.items-container{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 100px;
+    justify-content: space-between;
+    
+    justify-content: space-around;
+    padding: 10px;
+    padding-bottom: 10px;
+    
+    
+}
+.item-container {
+    flex: 0 0 calc(25% - 20px); 
+    padding: 15px;
+}
+    
+
+/* main */
+.heading{
+    color: #999;
+    font-weight: 700;
+}
+
+
+.music-image img{
+    border-radius: 10%;
+}
+.detail h1  {
+    color: #999;
+    margin: 0px;
+    padding: 0px;
+}
+
+.detail p {
+    font-size: 20px;
+}
+
+/* footer  */
+
+.footer {
+    background-color: #1f1f1f;
+    color: #f5f5f5;
+    padding: 40px 20px 20px;
+    font-size: 14px;
+    border-top: 1px solid #333;
+  }
+  
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+  }
+  
+  .footer-brand {
+    flex: 1 1 250px;
+  }
+  
+  .footer-logo {
+    width: 120px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+  }
+  
+  .footer-links {
+    flex: 1 1 150px;
+  }
+  
+  .footer-links h3 {
+    margin-bottom: 10px;
+    color: #d4af37;
+  }
+  
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 8px;
+  }
+  
+  .footer-links a {
+    color: #ccc;
+    text-decoration: none;
+  }
+  
+  .footer-links a:hover {
+    color: #fff;
+  }
+  
+  .footer-social {
+    flex: 1 1 150px;
+  }
+  
+  .social-icons a {
+    margin-right: 10px;
+    font-size: 20px;
+    color: #ccc;
+    transition: color 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    color: #d4af37;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    color: #888;
+    font-size: 13px;
+  }
+  

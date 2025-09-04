@@ -1,0 +1,22 @@
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .search-bar {
+        width: 100%;
+        margin: 12px 0;
+    }
+
+    .btn-group {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .btn-item {
+        flex-wrap: wrap;
+    }
+}
