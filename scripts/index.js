@@ -18,4 +18,3 @@ items.forEach(item => {
 items_container.innerHTML = innerHTML;
 
 
-

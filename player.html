@@ -11,11 +11,13 @@
 <body>
     
 
-    <header>
+   
         <header>
             <div class="brand-logo">
-                <div class="logo">
-                    <img src="images/logo1.png" alt="brand logo"></div>
+                 <div class="logo">
+                    <img src="images/logo1.png" alt="brand logo"></div> 
+                    
+                    
     
                 </div>
                 <i class="fa-solid fa-house-user"></i></div>
@@ -24,7 +26,7 @@
             <i class="fa-brands fa-searchengin"></i>    
            </div>
           <div class="btn-group">
-            <div class="btn-item">
+            <div class="btn-item">  
                 <button class="btn-permium">permium</button>
                 <button class="btn-support">support</button>
                 <button class="btn-Download">Download</button>
@@ -36,13 +38,29 @@
     
     
     
-        </header>
+        
     </header>
 
     <main>
+ 
+    <div class="player-header">
+        <button class="back-btn" onclick="window.location.href='index.html'">← Back</button>
+        <h1 class="song-title">Favourite</h1>
+      </div>
 
-    </main>
+
+      <div class="player-main">
+         <!-- <div class="player-container">
+          <img src="images/1.png" alt="Album Art" class="album-art">
+          <audio controls class="audio-player">
+            <source src="music/For A Reason - Karan Aujla.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.  
+          </audio>
+        </div>  -->
+      </div>
+      </main> 
     <script src="data/items.js"></script>
+    <script src="scripts/player.js"></script>
     <script src="scripts/index.js"></script>
 </body>
 </html>

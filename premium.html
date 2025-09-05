@@ -1,0 +1,502 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Music Player</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0 60px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .plans-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .plan-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        .plan-card.premium {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #333;
+            transform: scale(1.05);
+        }
+
+        .plan-card.premium::before {
+            content: "Most Popular";
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 40px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transform: rotate(45deg);
+        }
+
+        .plan-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        .plan-card.premium .plan-title {
+            color: #333;
+        }
+
+        .plan-price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .plan-card.premium .plan-price {
+            color: #333;
+        }
+
+        .plan-period {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .features-list li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            background: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .subscribe-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .subscribe-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .plan-card.premium .subscribe-btn {
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+        }
+
+        .money-back {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .features-comparison {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .features-comparison h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #667eea;
+            font-size: 2rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9ff;
+        }
+
+        .feature-available {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .feature-unavailable {
+            color: #f44336;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-5px);
+        }
+
+        .testimonials {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            color: #667eea;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .testimonial {
+            padding: 20px;
+            border-radius: 15px;
+            background: #f8f9ff;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .plans-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .plan-card.premium {
+                transform: none;
+            }
+            
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+            
+            .comparison-table th,
+            .comparison-table td {
+                padding: 10px 5px;
+            }
+        }
+
+        .floating-music-notes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .music-note {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-music-notes">
+        <div class="music-note" style="left: 10%; top: 20%; animation-delay: 0s;">♪</div>
+        <div class="music-note" style="left: 80%; top: 30%; animation-delay: 2s;">♫</div>
+        <div class="music-note" style="left: 60%; top: 10%; animation-delay: 4s;">♪</div>
+        <div class="music-note" style="left: 30%; top: 60%; animation-delay: 1s;">♫</div>
+        <div class="music-note" style="left: 70%; top: 70%; animation-delay: 3s;">♪</div>
+    </div>
+
+    <button class="back-btn" onclick="goBack()">← Back to Player</button>
+
+    <div class="container">
+        <div class="header">
+            <h1>🎵 Upgrade to Premium</h1>
+            <p>Unlock the full potential of your music experience</p>
+        </div>
+
+        <div class="plans-container">
+            <div class="plan-card">
+                <div class="plan-title">Basic</div>
+                <div class="plan-price">Free</div>
+                <div class="plan-period">Forever</div>
+                <ul class="features-list">
+                    <li>Limited skips (6 per hour)</li>
+                    <li>Ads between songs</li>
+                    <li>Standard audio quality</li>
+                    <li>Basic playlists</li>
+                    <li>Online streaming only</li>
+                </ul>
+                <button class="subscribe-btn" onclick="selectPlan('basic')">Continue with Free</button>
+                <div class="money-back">No payment required</div>
+            </div>
+
+            <div class="plan-card premium">
+                <div class="plan-title">Premium</div>
+                <div class="plan-price">$9.99</div>
+                <div class="plan-period">per month</div>
+                <ul class="features-list">
+                    <li>Unlimited skips</li>
+                    <li>Ad-free experience</li>
+                    <li>High-quality audio (320kbps)</li>
+                    <li>Unlimited playlists</li>
+                    <li>Offline downloads</li>
+                    <li>Exclusive content</li>
+                    <li>Advanced equalizer</li>
+                </ul>
+                <button class="subscribe-btn" onclick="selectPlan('premium')">Start Premium Trial</button>
+                <div class="money-back">30-day money-back guarantee</div>
+            </div>
+
+            <div class="plan-card">
+                <div class="plan-title">Family</div>
+                <div class="plan-price">$14.99</div>
+                <div class="plan-period">per month</div>
+                <ul class="features-list">
+                    <li>Everything in Premium</li>
+                    <li>6 family accounts</li>
+                    <li>Individual profiles</li>
+                    <li>Parental controls</li>
+                    <li>Family mix playlists</li>
+                    <li>Separate listening history</li>
+                    <li>Priority customer support</li>
+                </ul>
+                <button class="subscribe-btn" onclick="selectPlan('family')">Start Family Plan</button>
+                <div class="money-back">30-day money-back guarantee</div>
+            </div>
+        </div>
+
+        <div class="features-comparison">
+            <h2>Feature Comparison</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Basic</th>
+                        <th>Premium</th>
+                        <th>Family</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ad-free listening</td>
+                        <td class="feature-unavailable">✗</td>
+                        <td class="feature-available">✓</td>
+                        <td class="feature-available">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Offline downloads</td>
+                        <td class="feature-unavailable">✗</td>
+                        <td class="feature-available">✓</td>
+                        <td class="feature-available">✓</td>
+                    </tr>
+                    <tr>
+                        <td>High-quality audio</td>
+                        <td class="feature-unavailable">✗</td>
+                        <td class="feature-available">✓</td>
+                        <td class="feature-available">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Unlimited skips</td>
+                        <td class="feature-unavailable">✗</td>
+                        <td class="feature-available">✓</td>
+                        <td class="feature-available">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Multiple accounts</td>
+                        <td class="feature-unavailable">✗</td>
+                        <td class="feature-unavailable">✗</td>
+                        <td class="feature-available">✓ (6 accounts)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="testimonials">
+            <h2>What Our Users Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <div class="testimonial-text">"Premium completely changed my music experience. The sound quality is amazing!"</div>
+                    <div class="testimonial-author">- Sarah M.</div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-text">"Being able to download music for offline listening is a game-changer for my commute."</div>
+                    <div class="testimonial-author">- Mike D.</div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-text">"The family plan is perfect! Each family member has their own playlists and recommendations."</div>
+                    <div class="testimonial-author">- Jennifer L.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       
+        
+
+        function selectPlan(planType) {
+            switch(planType) {
+                case 'basic':
+                    alert('Continuing with free plan...');
+                    break;
+                case 'premium':
+                    alert('Starting Premium trial! You\'ll enjoy 30 days free, then $9.99/month.');
+                    break;
+                case 'family':
+                    alert('Starting Family plan! You\'ll enjoy 30 days free, then $14.99/month.');
+                    break;
+            }
+            
+        }
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const planCards = document.querySelectorAll('.plan-card');
+            
+            planCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    if (this.classList.contains('premium')) {
+                        this.style.transform = 'scale(1.05)';
+                    } else {
+                        this.style.transform = 'translateY(0) scale(1)';
+                    }
+                });
+            });
+        });
+
+        let back_btn = document.querySelector(".back-btn")
+        back_btn.addEventListener("click", function(){
+            window.location.href = "index.html";
+
+        })
+    </script>
+</body>
+</html> 
