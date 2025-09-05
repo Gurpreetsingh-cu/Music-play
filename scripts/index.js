@@ -17,4 +17,8 @@ items.forEach(item => {
 
 items_container.innerHTML = innerHTML;
 
+items_container = document.querySelector(".items-container")
+items_container.addEventListener("click" , function(){
+    window.location.href = "player.html"
+})
 
