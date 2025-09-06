@@ -56,6 +56,8 @@
   .player-main {
     flex: 1;
     display: flex;
+    flex-wrap: wrap;
+    flex: calc(50% - 20px);
     justify-content: center;
     align-items: center;
     padding: 40px 20px;
